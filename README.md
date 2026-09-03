@@ -7,22 +7,22 @@ selling price, following the CRISP-DM cycle.
 
 The Amsterdam housing market is heterogeneous: a single city-wide model mixes
 different price mechanisms across districts and property types. The analysis
-therefore picks one homogeneous segment — **West, appartementen** (475 listings,
-high record count and strong price correlations) — and answers three questions on it:
+therefore picks one homogeneous segment, **West, appartementen** (475 listings,
+high record count and strong price correlations), and answers three questions on it:
 
-1. **Regression** — what is a listing's price, given its physical attributes?
-2. **Classification** — which price quartile (low / mid-low / mid-high / high) does it fall into?
-3. **Time series** — what will the Amsterdam average selling price be in 2021 Q3 and Q4?
+1. **Regression**: what is a listing's price, given its physical attributes?
+2. **Classification**: which price quartile (low / mid-low / mid-high / high) does it fall into?
+3. **Time series**: what will the Amsterdam average selling price be in 2021 Q3 and Q4?
 
 ## Data
 
 | File | Rows | Description |
 |---|---|---|
 | `amsterdam.csv` | 2,692 | Listing-level data: postcode, street, lat/lng, price, area (m²), volume (m³), floors, year built, garden flag, property type, photo count, rooms |
-| `timeline_housing_price_amsterdam.csv` | 106 quarters | CBS quarterly series, 1995 Q1 – 2021 Q2: price index, homes sold, average selling price (Netherlands and Amsterdam) |
+| `timeline_housing_price_amsterdam.csv` | 106 quarters | CBS quarterly series, 1995 Q1 - 2021 Q2: price index, homes sold, average selling price (Netherlands and Amsterdam) |
 
 Postcodes are mapped to *stadsdelen* (districts) from the 4-digit prefix using the
-Dutch postcode ranges (1011–1019 Centrum, 1050–1059 West, and so on).
+Dutch postcode ranges (1011-1019 Centrum, 1050-1059 West, and so on).
 
 ## Approach
 
@@ -70,10 +70,10 @@ Tree feature importances agree with the regression: `area` 0.648, `volume` 0.176
 `photos` 0.147, `rooms` 0.029. Size drives price; the negative `rooms` coefficient
 reflects that, holding area and volume fixed, more rooms means smaller rooms.
 
-**Forecast** — ARIMA(1,2,2): 2021 Q3 **€558,024**, 2021 Q4 **€558,896**. Prices stay
+**Forecast** with ARIMA(1,2,2): 2021 Q3 **€558,024**, 2021 Q4 **€558,896**. Prices stay
 high and edge upward, i.e. continued pressure rather than a correction over this horizon.
 
-![Average housing price in Amsterdam, 1995–2021, with the Q3–Q4 2021 forecast](forecast.png)
+![Average housing price in Amsterdam, 1995-2021, with the Q3-Q4 2021 forecast](forecast.png)
 
 ## Running it
 
@@ -87,5 +87,5 @@ Both CSVs are read from the repository root; run the notebook top to bottom.
 ## References
 
 - [Amsterdam woningwaarde map](https://maps.amsterdam.nl/woningwaarde/)
-- [Dutch postcode list 1000–1999](https://nl.wikipedia.org/wiki/Lijst_van_postcodes_1000-1999_in_Nederland)
+- [Dutch postcode list 1000-1999](https://nl.wikipedia.org/wiki/Lijst_van_postcodes_1000-1999_in_Nederland)
 - [Waarderingskamer](https://www.waarderingskamer.nl/)
